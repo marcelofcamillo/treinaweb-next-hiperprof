@@ -1,3 +1,4 @@
+import { Router } from '@routes/routes';
 import { useRouter } from 'next/router';
 import { FormEvent, useState } from 'react';
 
@@ -10,7 +11,8 @@ export default function useIndex() {
     event.preventDefault();
 
     if (search.length >= 3) {
-      router.push('/pesquisa-professor');
+      //router.push({ pathname: '/pesquisa-professor', query: { search } });
+      Router.pesquisaProfessor.push(router, search);
     } else {
       setMessageError('Mínimo de 3 caracteres.');
     }
