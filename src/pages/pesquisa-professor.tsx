@@ -1,8 +1,11 @@
 import PageTitle from '@components/data-display/PageTitle';
 import ListaProfessorCard from '@components/data-display/ProfessorCard/listaProfessorCard';
+import usePesquisaProfessor from '@data/hooks/pages/usePesquisaProfessor';
 import { Container, Icon, TextField } from '@mui/material';
 
 export default function PesquisaProfessorPage() {
+  const { professores } = usePesquisaProfessor();
+
   return (
     <Container>
       <TextField
@@ -19,7 +22,7 @@ export default function PesquisaProfessorPage() {
         subtitle='Clique sobre um professor para ver os detalhes e poder marcar uma aula com o mesmo'
       />
       <ListaProfessorCard
-        professores={[{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }]}
+        professores={professores ?? []}
         onClick={(professor) => {}}
       />
     </Container>
