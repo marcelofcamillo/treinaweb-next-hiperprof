@@ -1,16 +1,29 @@
 import { Button, Typography } from '@mui/material';
 import { BoxAvatarStyled, BoxContainsStyled, ImageStyled } from './styles';
+import { ProfessorInterface } from '@data/@types/professor';
 
-export default function ProfessorCard() {
+export interface ProfessorCardProps {
+  professor: ProfessorInterface;
+  onClick: (professor: ProfessorInterface) => void;
+}
+
+export default function ProfessorCard({
+  professor,
+  onClick,
+}: ProfessorCardProps) {
   return (
     <>
       <BoxAvatarStyled>
-        <ImageStyled src='https://github.com/marcelofcamillo.png' alt='' />
+        {professor.foto_perfil ? (
+          <ImageStyled src={professor.foto_perfil!} alt='' />
+        ) : (
+          <ImageStyled src={'/user.svg'} alt='' style={{ width: '50%' }} />
+        )}
       </BoxAvatarStyled>
       <BoxContainsStyled>
         <div className='text-container'>
           <Typography variant='h6' className='descricao' paragraph>
-            Nome
+            {professor.nome}
           </Typography>
           <Typography
             sx={{ display: 'flex', alignItems: 'center' }}
@@ -18,16 +31,14 @@ export default function ProfessorCard() {
             className='descricao'
             paragraph
           >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore
-            culpa reiciendis vel at maxime alias ratione iste minus, nesciunt
-            perferendis quam quia eos hic magnam. Rerum sed voluptate reiciendis
-            quibusdam! Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Vel debitis eius earum dolor illo odit, delectus, voluptatem animi
-            quos rerum, natus laborum suscipit quas saepe blanditiis incidunt
-            nulla totam quasi?
+            {professor.descricao}
           </Typography>
         </div>
-        <Button variant='outlined' color='inherit' onClick={() => {}}>
+        <Button
+          variant='outlined'
+          color='inherit'
+          onClick={() => onClick(professor)}
+        >
           Ver detalhes
         </Button>
       </BoxContainsStyled>
