@@ -4,7 +4,7 @@ import usePesquisaProfessor from '@data/hooks/pages/usePesquisaProfessor';
 import { Container, Icon, TextField } from '@mui/material';
 
 export default function PesquisaProfessorPage() {
-  const { professores, onSearch } = usePesquisaProfessor();
+  const { professores, onSearch, selecionarProfessor } = usePesquisaProfessor();
 
   return (
     <Container>
@@ -24,7 +24,7 @@ export default function PesquisaProfessorPage() {
       />
       <ListaProfessorCard
         professores={professores ?? []}
-        onClick={(professor) => {}}
+        onClick={selecionarProfessor}
       />
     </Container>
   );
