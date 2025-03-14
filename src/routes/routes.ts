@@ -15,8 +15,8 @@ export const Router = {
   },
   detalheProfessor: {
     name: '/professor/detalhe-professor',
-    push: function (router: NextRouter, professor_id?: string) {
-      router.push({ pathname: this.name, query: { professor_id } });
+    push: function (router: NextRouter, search: string) {
+      router.push({ pathname: this.name, query: { search } });
     },
   },
 };
