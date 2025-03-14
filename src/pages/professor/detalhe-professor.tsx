@@ -1,4 +1,6 @@
 import PageTitle from '@components/data-display/PageTitle';
+import useDetalheProfessor from '@data/hooks/pages/professor/useDetalheProfessor';
+import { TextFormatService } from '@data/services/TextFormatService';
 import { Button, Container, Typography } from '@mui/material';
 import {
   BoxCardProfessor,
@@ -7,6 +9,8 @@ import {
 } from '@styles/pages/professor/detalhe-professor.styled';
 
 export default function DetalheProfessorPage() {
+  const { professor } = useDetalheProfessor();
+
   return (
     <Container>
       <PageTitle
@@ -14,23 +18,17 @@ export default function DetalheProfessorPage() {
         subtitle='Veja os detalhes do professor e verifique se ele é o ideal para você se candidatar a uma aula'
       />
       <BoxCardProfessor>
-        <BoxImage foto={'https://github.com/marcelofcamillo.png'} />
+        <BoxImage foto={professor?.foto_perfil} />
         <BoxDescription>
           <div className='box_esquerda'>
-            <Typography variant='h6'>Nome</Typography>
+            <Typography variant='h6'>{professor?.nome}</Typography>
             <Typography
               variant='body2'
               paragraph
               className='descricao'
               sx={{ my: 2 }}
             >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-              excepturi perferendis asperiores molestias unde, iste corrupti,
-              aut expedita eaque dolorum iure enim quo doloremque ipsum labore
-              tempora maxime quos ea! Lorem ipsum dolor sit amet consectetur,
-              adipisicing elit. Error corrupti est enim expedita adipisci?
-              Vitae, beatae rerum enim consequuntur labore repellendus omnis
-              quam dolore odit qui illo officiis, assumenda ut.
+              {professor?.descricao}
             </Typography>
           </div>
           <div className='box_direita'>
@@ -38,7 +36,7 @@ export default function DetalheProfessorPage() {
               PREÇO HORA/AULA
             </Typography>
             <Typography variant='h4' paragraph>
-              25/10/2022
+              {TextFormatService.currency(professor?.valor_hora)}
             </Typography>
             <Button variant='outlined' color='inherit' onClick={() => {}}>
               Contratar

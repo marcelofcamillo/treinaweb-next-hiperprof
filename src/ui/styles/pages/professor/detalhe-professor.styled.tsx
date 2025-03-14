@@ -21,7 +21,6 @@ export const BoxImage = styled(Box, {
     ${({ foto }) => `url(${foto ?? '/user.svg'})`};
   height: 100%;
   border-radius: ${({ theme }) => theme.spacing(1, 0, 0, 1)};
-  background-color: red;
 
   ${({ theme }) => theme.breakpoints.down('sm')} {
     height: 300px;
